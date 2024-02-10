@@ -3,7 +3,6 @@ name: kfd-automation
 on:
   push:
     branches: [ "main" ]
-	
 jobs:
   build:
 
