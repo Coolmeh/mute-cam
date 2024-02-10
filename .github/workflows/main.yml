@@ -1,20 +1,22 @@
-name: kfd-automation
+name: Build and Export IPA
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ] # Replace with your target branch
 
 jobs:
-  build:
+  build-and-export:
     runs-on: macos-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Make IPA
         run: |
           xcodebuild clean build -project kfd.xcodeproj \
             -scheme kfd \
-            -destination 'platform=iOS Simulator,name=iPhone 13,OS=16.0'
+            -destination 'platform=iOS Simulator,name=Any iOS Simulator Device'
       - uses: actions/upload-artifact@v3
         with:
-          name: IPA Download
-          path: mute-cam/kfd.ipa
+          name: ipa-file
+          path: ./build/iphoneos/kfd.ipa # Adjust path if different
+
